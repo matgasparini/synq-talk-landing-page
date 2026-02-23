@@ -23,8 +23,8 @@ export async function POST(request: Request) {
 
     // Send notification email via Resend (if API key is configured)
     // Otherwise, log the submission
-    const resendApiKey = process.env.RESEND_API_KEY;
-    const notifyEmail = process.env.NOTIFY_EMAIL || "team@synq.talk";
+    const resendApiKey = process.env.NOTIFY_EMAIL;
+    const notifyEmail = process.env.NOTIFY_EMAIL || "contact@synq.talk";
 
     if (resendApiKey) {
       const emailResponse = await fetch("https://api.resend.com/emails", {
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "Synq Talk <onboarding@resend.dev>",
+          from: "Synq Talk <onboarding@synq.talk>",
           to: [notifyEmail],
           subject: `New Waitlist Signup: ${name}`,
           html: `
