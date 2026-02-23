@@ -118,7 +118,7 @@ export function WaitlistModal({ open, onClose }: WaitlistModalProps) {
               </svg>
             </div>
             <h3 className="text-2xl font-bold text-[#D1D5DB] mb-2">
-              {"You're on the list!"}
+              {t("modalSuccessTitle")}
             </h3>
             <p className="text-[#6B7280] leading-relaxed mb-6">
               {t("modalSuccessText")}
