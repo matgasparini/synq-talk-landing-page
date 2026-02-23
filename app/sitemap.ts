@@ -1,13 +1,13 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
 
-const SITE_URL = 'https://synqtalk.com'
+const SITE_URL = "https://synq.talk";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_URL,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 1.0,
       alternates: {
         languages: {
@@ -18,5 +18,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-  ]
+  ];
 }

@@ -1,4 +1,4 @@
-const SITE_URL = 'https://synqtalk.com'
+const SITE_URL = 'https://synq.talk'
 
 const organizationSchema = {
   '@context': 'https://schema.org',
@@ -14,7 +14,7 @@ const organizationSchema = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    email: 'contact@synqtalk.com',
+    email: 'contact@synq.talk',
   },
 }
 

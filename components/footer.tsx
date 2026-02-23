@@ -26,7 +26,7 @@ export function Footer() {
             {t("footerTerms")}
           </a>
           <a
-            href="mailto:contact@synqtalk.com"
+            href="mailto:contact@synq.talk"
             className="hover:text-[#D1D5DB] transition-colors"
           >
             {t("footerContact")}

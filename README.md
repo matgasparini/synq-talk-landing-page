@@ -1,6 +1,6 @@
 # Synq Talk — Landing Page
 
-Landing page oficial do [Synq Talk](https://synqtalk.com), um tradutor de reuniões com IA em tempo real. Construída com Next.js 15+ (App Router), React 19, Tailwind CSS 4 e TypeScript.
+Landing page oficial do [Synq Talk](https://synq.talk), um tradutor de reuniões com IA em tempo real. Construída com Next.js 15+ (App Router), React 19, Tailwind CSS 4 e TypeScript.
 
 ---
 
@@ -12,17 +12,17 @@ Synq Talk oferece tradução em tempo real com a menor latência do mercado (~12
 
 ## Stack Tecnológica
 
-| Tecnologia | Versão | Finalidade |
-|---|---|---|
-| Next.js | 16.1.6 | Framework React com App Router |
-| React | 19.2.4 | Biblioteca de UI |
-| TypeScript | 5.7.3 | Tipagem estática |
-| Tailwind CSS | 4.1.9 | Estilização utilitária |
-| Radix UI | — | Componentes acessíveis sem estilo |
-| Lucide React | 0.564+ | Ícones |
-| Vercel Analytics | 1.6.1 | Analytics de produção |
-| React Hook Form | 7.54+ | Gerenciamento de formulários |
-| Zod | 3.24+ | Validação de schemas |
+| Tecnologia       | Versão | Finalidade                        |
+| ---------------- | ------ | --------------------------------- |
+| Next.js          | 16.1.6 | Framework React com App Router    |
+| React            | 19.2.4 | Biblioteca de UI                  |
+| TypeScript       | 5.7.3  | Tipagem estática                  |
+| Tailwind CSS     | 4.1.9  | Estilização utilitária            |
+| Radix UI         | —      | Componentes acessíveis sem estilo |
+| Lucide React     | 0.564+ | Ícones                            |
+| Vercel Analytics | 1.6.1  | Analytics de produção             |
+| React Hook Form  | 7.54+  | Gerenciamento de formulários      |
+| Zod              | 3.24+  | Validação de schemas              |
 
 ---
 
@@ -109,12 +109,12 @@ npx tsc --noEmit
 
 A i18n é implementada via React Context em `lib/i18n.tsx`. Os idiomas suportados são:
 
-| Código | Idioma |
-|---|---|
-| `en` | English (padrão) |
-| `pt` | Português |
-| `es` | Español |
-| `fr` | Français |
+| Código | Idioma           |
+| ------ | ---------------- |
+| `en`   | English (padrão) |
+| `pt`   | Português        |
+| `es`   | Español          |
+| `fr`   | Français         |
 
 Para adicionar um novo idioma, inclua o objeto de traduções no arquivo `lib/i18n.tsx` e adicione o código ao tipo `Locale`.
 
@@ -141,11 +141,11 @@ Endpoint para submissão de entrada na lista de espera.
 
 **Respostas:**
 
-| Status | Descrição |
-|---|---|
-| `200` | Entrada registrada com sucesso |
-| `400` | Dados inválidos |
-| `500` | Erro interno |
+| Status | Descrição                      |
+| ------ | ------------------------------ |
+| `200`  | Entrada registrada com sucesso |
+| `400`  | Dados inválidos                |
+| `500`  | Erro interno                   |
 
 ---
 
@@ -154,6 +154,7 @@ Endpoint para submissão de entrada na lista de espera.
 Esta landing page foi otimizada para máximo ranking no Google com:
 
 ### Metadata
+
 - **Open Graph** completo (título, descrição, imagem 1200x630, locale, alternateLocale)
 - **Twitter Cards** com `summary_large_image`
 - **robots** com configuração explícita para Googlebot
@@ -162,17 +163,21 @@ Esta landing page foi otimizada para máximo ranking no Google com:
 - **PWA manifest** referenciado
 
 ### Arquivos gerados automaticamente
+
 - `/robots.txt` — via `app/robots.ts`
 - `/sitemap.xml` — via `app/sitemap.ts`
 - `/manifest.json` — via `app/manifest.ts`
 
 ### Structured Data (JSON-LD)
+
 Três schemas declarados em `components/structured-data.tsx`:
+
 - **Organization** — nome, URL, logo, redes sociais, contato
 - **SoftwareApplication** — categoria, plataforma, features, oferta, rating agregado
 - **FAQPage** — 5 perguntas frequentes para rich results no Google
 
 ### Core Web Vitals
+
 - Fontes com `display: 'swap'` para evitar FOIT
 - Otimização de imagens do Next.js habilitada
 - Sem uso de `<img>` nativo (todos os casos usam componentes otimizados)

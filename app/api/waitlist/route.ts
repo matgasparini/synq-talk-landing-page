@@ -1,30 +1,30 @@
-import { NextResponse } from "next/server"
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json()
-    const { name, email, company, role } = body
+    const body = await request.json();
+    const { name, email, company, role } = body;
 
     if (!name || !email) {
       return NextResponse.json(
         { error: "Name and email are required." },
         { status: 400 }
-      )
+      );
     }
 
     // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
         { error: "Please enter a valid email address." },
         { status: 400 }
-      )
+      );
     }
 
     // Send notification email via Resend (if API key is configured)
     // Otherwise, log the submission
-    const resendApiKey = process.env.RESEND_API_KEY
-    const notifyEmail = process.env.NOTIFY_EMAIL || "team@synqtalk.com"
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const notifyEmail = process.env.NOTIFY_EMAIL || "team@synq.talk";
 
     if (resendApiKey) {
       const emailResponse = await fetch("https://api.resend.com/emails", {
@@ -49,35 +49,49 @@ export async function POST(request: Request) {
                   <td style="padding: 8px 0; color: #6B7280; font-size: 14px;">Email</td>
                   <td style="padding: 8px 0; font-size: 14px; font-weight: 600;">${email}</td>
                 </tr>
-                ${company ? `<tr>
+                ${
+                  company
+                    ? `<tr>
                   <td style="padding: 8px 0; color: #6B7280; font-size: 14px;">Company</td>
                   <td style="padding: 8px 0; font-size: 14px; font-weight: 600;">${company}</td>
-                </tr>` : ""}
-                ${role ? `<tr>
+                </tr>`
+                    : ""
+                }
+                ${
+                  role
+                    ? `<tr>
                   <td style="padding: 8px 0; color: #6B7280; font-size: 14px;">Role</td>
                   <td style="padding: 8px 0; font-size: 14px; font-weight: 600;">${role}</td>
-                </tr>` : ""}
+                </tr>`
+                    : ""
+                }
               </table>
               <p style="color: #6B7280; font-size: 12px; margin-top: 24px;">Sent from Synq Talk waitlist form</p>
             </div>
           `,
         }),
-      })
+      });
 
       if (!emailResponse.ok) {
-        console.error("Resend API error:", await emailResponse.text())
+        console.error("Resend API error:", await emailResponse.text());
       }
     } else {
       // Log signup when no email service is configured
-      console.log("[Waitlist Signup]", { name, email, company, role, timestamp: new Date().toISOString() })
+      console.log("[Waitlist Signup]", {
+        name,
+        email,
+        company,
+        role,
+        timestamp: new Date().toISOString(),
+      });
     }
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Waitlist submission error:", error)
+    console.error("Waitlist submission error:", error);
     return NextResponse.json(
       { error: "Something went wrong. Please try again." },
       { status: 500 }
-    )
+    );
   }
 }

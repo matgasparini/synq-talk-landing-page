@@ -1,16 +1,16 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
 
-const SITE_URL = 'https://synqtalk.com'
+const SITE_URL = "https://synq.talk";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: '*',
-        allow: '/',
+        userAgent: "*",
+        allow: "/",
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,
-  }
+  };
 }

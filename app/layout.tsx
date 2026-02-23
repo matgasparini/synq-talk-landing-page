@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const SITE_URL = "https://synqtalk.com";
+const SITE_URL = "https://synq.talk";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
