@@ -23,52 +23,8 @@ export async function POST(request: Request) {
 
     // Send notification email via Resend (if API key is configured)
     // Otherwise, log the submission
-    const resendApiKey = process.env.NOTIFY_EMAIL;
+    const resendApiKey = process.env.RESEND_API_KEY;
     const notifyEmail = process.env.NOTIFY_EMAIL || "contact@synq.talk";
-
-    console.log("resendApiKey", resendApiKey);
-    console.log("notifyEmail", notifyEmail);
-
-    console.log(
-      "obj",
-      JSON.stringify({
-        from: "Synq Talk <onboarding@synq.talk>",
-        to: [notifyEmail],
-        subject: `New Waitlist Signup: ${name}`,
-        html: `
-        <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto;">
-          <h2 style="color: #7C3AED;">New Waitlist Signup</h2>
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr>
-              <td style="padding: 8px 0; color: #6B7280; font-size: 14px;">Name</td>
-              <td style="padding: 8px 0; font-size: 14px; font-weight: 600;">${name}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; color: #6B7280; font-size: 14px;">Email</td>
-              <td style="padding: 8px 0; font-size: 14px; font-weight: 600;">${email}</td>
-            </tr>
-            ${
-              company
-                ? `<tr>
-              <td style="padding: 8px 0; color: #6B7280; font-size: 14px;">Company</td>
-              <td style="padding: 8px 0; font-size: 14px; font-weight: 600;">${company}</td>
-            </tr>`
-                : ""
-            }
-            ${
-              role
-                ? `<tr>
-              <td style="padding: 8px 0; color: #6B7280; font-size: 14px;">Role</td>
-              <td style="padding: 8px 0; font-size: 14px; font-weight: 600;">${role}</td>
-            </tr>`
-                : ""
-            }
-          </table>
-          <p style="color: #6B7280; font-size: 12px; margin-top: 24px;">Sent from Synq Talk waitlist form</p>
-        </div>
-      `,
-      })
-    );
 
     if (resendApiKey) {
       const emailResponse = await fetch("https://api.resend.com/emails", {
